@@ -46,4 +46,3 @@ class Student():
             if students[key].status == "In class":
                 count += 1
         return count
-
