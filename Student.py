@@ -1,5 +1,5 @@
 from random import randint
-from Klass import Klass
+#from Klass import Klass
 
 class Student():
 
@@ -33,8 +33,8 @@ class Student():
 	def checkIn():
 		cl_id = int(input("Which class is this btw(By ID please)? ")) #check for class validity
 
-		if cli_id not in Klass.classes:
-			print ("This class doesn't exist bro! Try again")
+		#if cl_id not in Klass.classes:
+		#	print ("This class doesn't exist bro! Try again")
 
 		st_id = int(input("Which student(By ID please)?" ))
 
@@ -49,7 +49,7 @@ class Student():
 
 	def list_students():
 		for key in Student.students:
-			print ("{} - {}", Student.students[key].name, Student.students[key].status)
+			print ("{} - {}".format( Student.students[key].name, Student.students[key].status))
 
 	def students_in_class(cl_id):
 		count = 0
@@ -57,12 +57,3 @@ class Student():
 			if Student.students[key].status == "In class":
 				count += 1
 		return count
-
-	"""def in_class():
-
-
-	def autocheckout(st_id):
-		for key in Klass.classes:
-			if Klass.classes[key].status == "Class in session":
-				for key in Student.students:
-					if """
