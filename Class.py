@@ -6,6 +6,7 @@ from Student import Student
 class Klass():
 
     class_id = [] 
+    classes = {}
 
     def __init__(self, id, name, start, stop, status ):
         self.id = id
@@ -61,5 +62,6 @@ class Klass():
     def list_classes():
         for key in Klass.classes:
             tally = Student.students_in_class(key)
-            print ("{} - {}", Klass.classes[key].name, tally)
+            print ("{} - {} student(s) in class - {}".format( Klass.classes[key].name, tally, Klass.classes[key].status))
+
 
