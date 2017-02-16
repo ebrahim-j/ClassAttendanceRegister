@@ -1,25 +1,26 @@
 from random import randint
 import time
-import Class
-import Student
+from Klass import Klass
+from Student import Student
+from Reason import Reason
 
-class_id = []
-student_id = []
-classes = {}
-students = {}
-reasons ={}
+
 
 def main():
 
     command = ""
-
+    count = 0
     while command != "exit":
-        command = input("Say 1 or 2 for managing classes\nSay 3 or 4 for managing students\n5 checks in students, 6 checks them out\
-                        \n7 to log into class and 8 to log out\nSay 9 to list Classes or 0 to list Students: " )
+        if count%4 == 0:
+                command = input("Say 1 or 2 for managing classes\nSay 3 or 4 for managing students\n5 checks in students, 6 checks them out\
+                                \n7 to log into class and 8 to log out\nSay 9 to list Classes or 0 to list Students: " )
+        else:
+                command = input("Enter 0-9 accordingly (Enter exit to exit)>")
+
         if command == "1":
-                Class.add_class()
+                Klass.add_class()
         elif command == "2":
-                Class.remove_class()
+                Klass.remove_class()
         elif command == "3":
                 Student.add_student()
         elif command == "4":
@@ -29,13 +30,15 @@ def main():
         elif command == "6":
                 Reason.checkOut()
         elif command == "7":
-                Class.log_in()
+                Klass.log_in()
         elif command == "8":
-                Class.log_out()
+                Klass.log_out()
+                #Student.autocheckout()
         elif command == "9":
-                Class.list_classes()
+                Klass.list_classes()
         elif command == "0":
                 Student.list_students()
+        count += 1
                     
     exit()
 
