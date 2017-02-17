@@ -12,10 +12,9 @@ class Reason():
         self.reason = reason
                                     
                                     
-    def checkOut():
-        cl_id = int(input("Which class to check out of(By ID please)? "))
-        st_id = int(input("Which student(By ID please)?" ))	
-        reason = input("Kindly state reason: ")
+    def checkOut(st_id, cl_id, reason):
+        st_id = int(st_id)
+        cl_id = int(cl_id)
         
         new_reason = Reason(st_id, cl_id, reason) 
         Reason.reasons[reason] = new_reason
