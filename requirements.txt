@@ -1,0 +1,8 @@
+Collecting freeze
+  Downloading freeze-1.0.10.tar.gz
+Collecting six (from freeze)
+  Downloading six-1.10.0-py2.py3-none-any.whl
+Installing collected packages: six, freeze
+  Running setup.py install for freeze: started
+    Running setup.py install for freeze: finished with status 'done'
+Successfully installed freeze-1.0.10 six-1.10.0
