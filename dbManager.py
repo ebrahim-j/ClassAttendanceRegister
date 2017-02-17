@@ -2,7 +2,7 @@ import sqlite3
 import time
 import datetime
 
-conn = sqlite3.connect('Ebrahim.db') #change name
+conn = sqlite3.connect('Ebrahim.db', timeout=10) #change name
 
 
 
@@ -22,8 +22,7 @@ def remove_from_class(cl_id):
 	conn.execute("DELETE FROM class WHERE ID=?", (cl_id,))
 	conn.commit()
 
-def log_into_class():
-	ask = int(input("Enter class ID to log in: "))
+def log_into_class(ask):
 	status = conn.execute("SELECT STATUS FROM class WHERE ID=?", (ask,))
 	result = ""
 	for row in status:
@@ -38,8 +37,7 @@ def log_into_class():
 	elif result == 'Class in session':
 		print('Class already logged in!')
 		
-def log_out_class():
-	ask = int(input("Enter class ID to log out: "))
+def log_out_class(ask):
 	status = conn.execute("SELECT STATUS FROM class WHERE ID=?", (ask,))
 	result = ""
 	for row in status:
@@ -64,23 +62,22 @@ def student_check_in(st_id, cl_id):
 	output = ""
 	for row in status:
 		output = row[0]
-	result = ""
-	for row in start:
-		result = row[0]
-		try:
-			result = datetime.datetime.strptime(result, "%d-%b-%Y %H:%M:%S")
-		except:
-			print("Class not in session yet")
-			return
-	stop = conn.execute("SELECT STOP FROM class WHERE ID=?", (cl_id, ))
-	result2 = ""
-	for row in stop:
-		result2 = row[0]
-		result2 = datetime.datetime.strptime(result2, "%d-%b-%Y %H:%M:%S")
+	# result = ""
+	# for row in start:
+		# result = row[0]
+		# if not result:
+			# print ("Class not yet in session")
+		# else:
+		# result = datetime.datetime.strptime(result, "%Y-%b-%d %H:%M:%S")
+	# stop = conn.execute("SELECT STOP FROM class WHERE ID=?", (cl_id, ))
+	# result2 = ""
+	# for row in stop:
+		# result2 = row[0]
+		# result2 = datetime.datetime.strptime(result2, "%Y-%b-%d %H:%M:%S")
 
-	if result < result2:
-		print ("Class not in session yet")
-	elif output == "In class":
+	#if result < result2:
+	#	print ("Class not in session yet")
+	if output == "In class":
 		print("Student already checked in to a class.")
 	else:
 		new_status = "In class"
@@ -115,5 +112,4 @@ def list_all_students():
 		print (row)
 
 def list_all_classes():
-	the_list = conn.execute("SELECT NAME,STATUS FROM classes GROUP BY NAME")
-	
+	print("Sorry, Not available now. Try again later")
