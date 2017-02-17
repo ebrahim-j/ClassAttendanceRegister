@@ -5,6 +5,7 @@ from dbManager import add_to_class
 from dbManager import remove_from_class
 from dbManager import log_into_class
 from dbManager import log_out_class
+from dbManager import list_all_classes
 
 class Klass():
 
@@ -19,8 +20,8 @@ class Klass():
         self.status = status #1 or 0 when db implimented
             
             
-    def add_class():
-        name = input("Name of class: ")
+    def add_class(name):
+        #name =str(name)
         start = None
         stop = None
         status = "Not in session"
@@ -34,8 +35,8 @@ class Klass():
         print("Done Successfully!\nYour class ID is: ", id)
             
             
-    def remove_class():
-        ask = int(input("Which class do you want to remove? "))
+    def remove_class(ask):
+        ask = int(ask)
         try:
             #del Klass.classes[ask]
             remove_from_class(ask)
@@ -43,13 +44,14 @@ class Klass():
         except:
             print("This class was not in our system anyway!")
 
-    def log_in():
-	    log_into_class()
-                       
-    def log_out():
-        log_out_class()
-
+    def log_in(ask):
+        ask = int(ask)
+        log_into_class(ask)
+		
+		
+    def log_out(ask):
+        ask = int(ask)
+        log_out_class(ask)
+		
     def list_classes():
-        for key in Klass.classes:
-            tally = Student.students_in_class(key)
-            print ("{} - {} student(s) in class - {}".format( Klass.classes[key].name, tally, Klass.classes[key].status))
+        list_all_classes()
