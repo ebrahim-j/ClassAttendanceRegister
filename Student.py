@@ -1,5 +1,13 @@
 from random import randint
 #from Klass import Klass
+from dbManager import add_to_student
+from dbManager import remove_from_student
+from dbManager import student_check_in
+from dbManager import list_all_students
+# import sqlite3
+
+# conn = sqlite3.connect('Ebrahim.db') #change name
+# c = conn.cursor()
 
 class Student():
 
@@ -20,14 +28,17 @@ class Student():
 		Student.student_id.append(id)
 		new_student = Student(id, name, status)
 		Student.students[id] = new_student
+		add_to_student(id, name, status)
 		print("Done Successfully!\nNew student ID is: ", id)
 		
 	def remove_student():
 		ask = int(input("Which student do you want to remove? "))
-		if ask in Student.students:
-			del Student.students[ask]
+		
+		try:
+			#del Student.students[ask]
+			remove_from_student(ask)
 			print("Deleted!")
-		else:
+		except:
 			print("This dude was not in the system anyway!")
 			
 	def checkIn():
@@ -37,19 +48,21 @@ class Student():
 		#	print ("This class doesn't exist bro! Try again")
 
 		st_id = int(input("Which student(By ID please)?" ))
+		student_check_in(st_id, cl_id)
 
-		if st_id not in Student.students:
+		"""if st_id not in Student.students:
 			print("Who is this dude? We don't know him!")
 		else:
 			if Student.students[st_id].status == "Not in class": #also check if class is logged in
 				Student.students[st_id].status = "In class"
 				print("Checked In Successfully!")
 			else:
-				print("Already checked in to a class") #say which class if possible
+				print("Already checked in to a class")""" #say which class if possible
 
 	def list_students():
-		for key in Student.students:
-			print ("{} - {}".format( Student.students[key].name, Student.students[key].status))
+		# for key in Student.students:
+			# print ("{} - {}".format( Student.students[key].name, Student.students[key].status))
+		list_all_students()
 
 	def students_in_class(cl_id):
 		count = 0
@@ -57,3 +70,12 @@ class Student():
 			if Student.students[key].status == "In class":
 				count += 1
 		return count
+
+	"""def in_class():
+
+
+	def autocheckout(st_id):
+		for key in Klass.classes:
+			if Klass.classes[key].status == "Class in session":
+				for key in Student.students:
+					if """
